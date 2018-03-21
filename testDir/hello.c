@@ -1,7 +1,9 @@
 #include <stdio.h>
 
-int main(void){
-	/* コメント追加 */
-	printf("Hello World\n");
+int main(void)
+{
+	char test[] = {'t', 'e', 's', 't', '\0'};
+
+	printf("%s\n", test);
 	return 0;
 }
