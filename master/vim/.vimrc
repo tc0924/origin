@@ -41,12 +41,19 @@ imap <c-j> <esc>
 inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
 
+" ステータスラインを常に表示(0:表示しない、1:2つ以上ウィンドウがある時だけ表示)
 set laststatus=2
+
+" 256色対応
 set t_Co=256
 
 " 色分け
 syntax on
 
+" カラーテーマ
+colorscheme iceberg
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " dein.vim
 " deinがインストールされるディレクトリの指定
 let s:dein_dir = expand('~/.cache/dein') "<- dein によってプラグインがインストールされるディレクトリ ##########
