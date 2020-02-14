@@ -91,6 +91,15 @@ set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 " grep検索時に自動でquickfix-windowを開く(|cwの入力不要)
 autocmd QuickFixCmdPost *grep* cwindow
 
+" ==============================================================================
+" deoplete.nvim START
+" ==============================================================================
+"pythonパスは環境により異なる
+let g:python3_host_prog = expand('~\AppData\Local\Continuum\anaconda3\python.exe')
+let g:deoplete#enable_at_startup = 1
+" ==============================================================================
+" deoplete.nvim END
+" ==============================================================================
 
 " ==============================================================================
 " nerdtree START
@@ -163,6 +172,11 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+" deoplete.nvim start~~~~~~~~~~~~~~~~~~~~~~~
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
+" deoplete.nvim end~~~~~~~~~~~~~~~~~~~~~~~~~
 
 call vundle#end()
 filetype plugin indent on
