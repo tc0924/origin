@@ -73,6 +73,8 @@ set background=dark
 set renderoptions=type:directx,renmode:5
 " テーマ
 colorscheme atom-dark-256
+" シンタックス
+syntax enable
 " バッファの移動 
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
@@ -90,6 +92,12 @@ set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 " hi SpecialKey ctermbg=None ctermfg=59 guibg=NONE guifg=None
 " grep検索時に自動でquickfix-windowを開く(|cwの入力不要)
 autocmd QuickFixCmdPost *grep* cwindow
+" コマンドモードの補完
+set wildmenu
+" 保存するコマンド履歴の数
+set history=5000
+" カーソルの左右移動で行末から次の行の行頭への移動が可能になる
+set whichwrap=b,s,h,l,<,>,[,],~
 
 " ==============================================================================
 " deoplete.nvim START
@@ -151,7 +159,7 @@ set nocompatible
 filetype off
 
 if has('win32') || has ('win64')
-  set rtp+=c:\vim\.vim\bundle\Vundle.vim
+  set rtp+=~\.vim\bundle\Vundle.vim
 else
   set rtp+=~/.vim/bundle/Vundle.vim
 endif
