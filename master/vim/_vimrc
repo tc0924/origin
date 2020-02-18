@@ -1,4 +1,6 @@
-"文字コードをUFT-8に設定
+" Leaderキーをスペースに設定
+let mapleader = "\<Space>"
+" 文字コードをUFT-8に設定
 set fenc=utf-8
 set encoding=utf-8
 " バックアップファイルを作らない
@@ -65,7 +67,7 @@ inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
 " 改行挿入時に挿入モードに移行しない([Space]+[Enter])
 noremap <Space><CR> o<ESC>
-"256色対応
+" 256色対応
 set t_Co=256
 " ダーク系のカラースキームを使う
 set background=dark
@@ -100,10 +102,59 @@ set history=5000
 set whichwrap=b,s,h,l,<,>,[,],~
 
 " ==============================================================================
+" Vundle.vim START
+" ==============================================================================
+
+set nocompatible
+filetype off
+
+if has('win32') || has ('win64')
+  set rtp+=~\.vim\bundle\Vundle.vim
+else
+  set rtp+=~/.vim/bundle/Vundle.vim
+endif
+
+call vundle#begin()
+
+" この下に追加したいプラグインを入力する
+Plugin 'VundleVim/Vundle.vim'
+"Plugin 'itchyny/lightline.vim'
+Plugin 'preservim/nerdtree'
+Plugin 'Shougo/unite.vim'     
+Plugin 'joshdick/onedark.vim' " カラーテーマ
+Plugin 'sonph/onehalf'        " カラーテーマ
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'markonm/traces.vim'   " 正規表現での検索をハイライト表示
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+" deoplete.nvim start~~~~~~~~~~~~~~~~~~~~~~~
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'wokalski/autocomplete-flow'
+" deoplete.nvim end~~~~~~~~~~~~~~~~~~~~~~~~~
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+
+call vundle#end()
+filetype plugin indent on
+" ==============================================================================
+" Vundle.vim END
+" ==============================================================================
+
+" ==============================================================================
 " deoplete.nvim START
 " ==============================================================================
-"pythonパスは環境により異なる
-let g:python3_host_prog = expand('~\AppData\Local\Continuum\anaconda3\python.exe')
+" pythonパスは環境により異なる
+if isdirectory(expand('~\AppData\Local\Continuum\anaconda3'))
+  let g:python3_host_prog = expand('~\AppData\Local\Continuum\anaconda3\python.exe')
+elseif
+  let g:python3_host_prog = expand('~\AppData\Local\Continuum\anaconda3\python.exe')
+endif
+" 自動起動
 let g:deoplete#enable_at_startup = 1
 " ==============================================================================
 " deoplete.nvim END
@@ -116,6 +167,8 @@ let g:deoplete#enable_at_startup = 1
 " autocmd vimenter * NERDTree
 " Ctrl+n で表示
 map <C-n> :NERDTreeToggle<CR>
+" <Leader>+n でカレントディレクトリを表示
+map <Leader>n :NERDTree .<CR>
 " 他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる。
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " ==============================================================================
@@ -152,42 +205,22 @@ let g:previm_enable_realtime = 1
 " ==============================================================================
 
 " ==============================================================================
-" Vundle.vim START
+" neosnippet START
+" ==============================================================================
+let g:neosnippet#enable_completed_snippet = 1
+" ==============================================================================
+" neosnippet END
 " ==============================================================================
 
-set nocompatible
-filetype off
-
-if has('win32') || has ('win64')
-  set rtp+=~\.vim\bundle\Vundle.vim
-else
-  set rtp+=~/.vim/bundle/Vundle.vim
-endif
-
-call vundle#begin()
-
-" この下に追加したいプラグインを入力する
-Plugin 'VundleVim/Vundle.vim'
-"Plugin 'itchyny/lightline.vim'
-Plugin 'preservim/nerdtree'
-Plugin 'Shougo/unite.vim'     
-Plugin 'joshdick/onedark.vim' " カラーテーマ
-Plugin 'sonph/onehalf'        " カラーテーマ
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'markonm/traces.vim'   " 正規表現での検索をハイライト表示
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-" deoplete.nvim start~~~~~~~~~~~~~~~~~~~~~~~
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
-" deoplete.nvim end~~~~~~~~~~~~~~~~~~~~~~~~~
-
-call vundle#end()
-filetype plugin indent on
 " ==============================================================================
-" Vundle.vim END
+" Unit.vim START
+" ==============================================================================
+" 入力モードで開始する
+" let g:unite_enable_start_insert=1
+" バッファ一覧
+noremap <Leader>b :Unite buffer<CR>
+" ファイル一覧
+noremap <Leader>f :Unite -buffer-name=file file<CR>
+" ==============================================================================
+" Unit.vim END
 " ==============================================================================
