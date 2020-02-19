@@ -33,8 +33,6 @@ set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 " 不可視文字の色設定
 hi NonText guibg=NONE guifg=#a0a1a7
 hi SpecialKey guibg=NONE guifg=#a0a1a7
-" CJK文字対策
-set ambiwidth=double
 " Windowsの場合
 if has('win32') || has ('win64')
     " Windows環境用のコード
