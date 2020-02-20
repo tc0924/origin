@@ -1,6 +1,3 @@
-"文字コードをUFT-8に設定
-set fenc=utf-8
-set encoding=utf-8
 " Leaderキーをスペースに設定
 let mapleader = "\<Space>"
 " 文字コードをUFT-8に設定
@@ -157,8 +154,8 @@ filetype plugin indent on
 " pythonパスは環境により異なる
 if isdirectory(expand('~\AppData\Local\Continuum\anaconda3'))
   let g:python3_host_prog = expand('~\AppData\Local\Continuum\anaconda3\python.exe')
-else
-  let g:python3_host_prog = expand('~\AppData\Local\Continuum\anaconda3\python.exe')
+elseif isdirectory(expand('~\Anaconda3'))
+  let g:python3_host_prog = expand('~\Anaconda3\python.exe')
 endif
 " 自動起動
 let g:deoplete#enable_at_startup = 1
