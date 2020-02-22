@@ -1,91 +1,270 @@
-set expandtab " タブ入力を複数の空白入力に置き換える
-set tabstop=4 " 画面上でタブ文字が占める幅
-set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set autoindent " 改行時に前の行のインデントを継続する
-set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
-set shiftwidth=4 " smartindentで増減する幅
-
-" 文字列検索
-set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
-set ignorecase " 検索パターンに大文字小文字を区別しない
-set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
-set hlsearch " 検索結果をハイライト
-
-set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
-set number " 行番号を表示
-set cursorline " カーソルラインをハイライト
-
+" Leaderキーをスペースに設定
+let mapleader = "\<Space>"
+" 文字コードをUFT-8に設定
+set fenc=utf-8
+set encoding=utf-8
+" バックアップファイルを作らない
+set nobackup
+" スワップファイルを作らない
+set noswapfile
+" 編集中のファイルが変更されたら自動で読み直す
+set autoread
+" バッファが編集中でもその他のファイルを開けるように
+set hidden
+" 入力中のコマンドをステータスに表示する
+set showcmd
+" undoファイルを1カ所にまとめる
+set undodir=C:\vim\undo
+" 行番号を表示
+set number
+" 現在の行を強調表示
+set cursorline
+" 行末の1文字先までカーソルを移動できるように
+set virtualedit=onemore
+" ビープ音を可視化
+set visualbell
+" 括弧入力時の対応する括弧を表示
+set showmatch
+" ステータスラインを常に表示
+set laststatus=2
+" コマンドラインの補完
+set wildmode=list:longest,full
+" 折り返し時に表示行単位での移動できるようにする
+nnoremap j gj
+nnoremap k gk
+" バックスペースキーの有効化
+set backspace=indent,eol,start
+" Tab文字を半角スペースにする
+set expandtab
+" 行頭以外のTab文字の表示幅（スペースいくつ分）
+set tabstop=2
+" 行頭でのTab文字の表示幅
+set shiftwidth=2
+" 改行時に前の行のインデントを継続する
+set autoindent 
+" 改行時に前の行の構文をチェックし次の行のインデントを増減する
+set smartindent
+" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
+set ignorecase
+" 検索文字列に大文字が含まれている場合は区別して検索する
+set smartcase
+" 検索文字列入力時に順次対象文字列にヒットさせる
+set incsearch
+" 検索時に最後まで行ったら最初に戻る
+set wrapscan
+" 検索結果をハイライト
+set hlsearch
+" ヤンク,カット操作によるクリップボードの操作
+set clipboard=unnamed,autoselect
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
 nnoremap k gk
 nnoremap <down> gj
 nnoremap <up> gk
-
-" バックスペースキーの有効化
-set backspace=indent,eol,start
-
-set showmatch " 括弧の対応関係を一瞬表示する
-source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
-
-set wildmenu " コマンドモードの補完
-set history=5000 " 保存するコマンド履歴の数
-
-" ルーラーを表示
-set ruler
-
-" ヤンク,カット操作によるクリップボードの操作
-set clipboard=unnamed,autoselect
-
 " ESCキーをCtrl+Jにマッピング
 imap <c-j> <esc>
 inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
-
-" ステータスラインを常に表示(0:表示しない、1:2つ以上ウィンドウがある時だけ表示)
-set laststatus=2
-
-set encoding=utf-8
-
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-" dein.vim
-" deinがインストールされるディレクトリの指定
-let s:dein_dir = expand('~/.cache/dein') "<- dein によってプラグインがインストールされるディレクトリ ##########
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-" deinがインストールされているかをチェック インストールされていなかったらdeinをダウンロードしてくる
-if &runtimepath !~# '/dein.vim'
- if !isdirectory(s:dein_repo_dir)
- execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
- endif
- execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-endif
-
-" deinの起動
-if dein#load_state(s:dein_dir)
- call dein#begin(s:dein_dir)
-
- " tomlファイル（使用するプラグインのリストが記述されているファイル）の場所を指定
- let g:rc_dir = expand('~/.vim/dein') "<- dein.toml dein_lazy.toml を読み込むディレクトリ ##########
- let s:toml = g:rc_dir . '/dein.toml'
- " let s:lazy_toml = g:rc_dir . '/dein_lazy.toml' "<- dein_lazy.toml を使う場合はコメント解除 ##########
-
- " tomlファイルを読み込む
- call dein#load_toml(s:toml, {'lazy': 0})
- " call dein#load_toml(s:lazy_toml, {'lazy': 1}) "<- dein_lazy.toml を使う場合はコメント解除 ##########
-
- " 設定の終了
- call dein#end()
- call dein#save_state()
-endif
-
-" プラグインのインストールをチェック 未インストールのプラグインがあればインストールする
-if dein#check_install()
- call dein#install()
-endif
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-" 色分け
-colorscheme iceberg
-set background=dark
-syntax on
+" 改行挿入時に挿入モードに移行しない([Space]+[Enter])
+noremap <Space><CR> o<ESC>
+" 256色対応
 set t_Co=256
+" ダーク系のカラースキームを使う
+set background=dark
+" DirectX
+set renderoptions=type:directx,renmode:5
+" テーマ
+colorscheme atom-dark-256
+" シンタックス
+syntax enable
+" バッファの移動 
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>
+" 保存時に全角空白を半角空白×2個にする
+if expand("%") !~? '^.*\(_\|\.\)vimrc'
+  autocmd BufWritePre * :%s/  /  /g
+endif
+" 検索ハイライトを<esc><esc>で取り消す
+nnoremap <ESC><ESC> :noh<CR>
+" タブ・空白・改行等の表示
+set list
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+" 不可視文字の色を変更
+" hi NonText    ctermbg=None ctermfg=59 guibg=NONE guifg=None
+" hi SpecialKey ctermbg=None ctermfg=59 guibg=NONE guifg=None
+" grep検索時に自動でquickfix-windowを開く(|cwの入力不要)
+autocmd QuickFixCmdPost *grep* cwindow
+" コマンドモードの補完
+set wildmenu
+" 保存するコマンド履歴の数
+set history=5000
+" カーソルの左右移動で行末から次の行の行頭への移動が可能になる
+set whichwrap=b,s,h,l,<,>,[,],~
+" CJK文字対策
+set ambiwidth=double
+
+" ==============================================================================
+" Vundle.vim START
+" ==============================================================================
+
+set nocompatible
+filetype off
+
+if has('win32') || has ('win64')
+  set rtp+=~\.vim\bundle\Vundle.vim
+else
+  set rtp+=~/.vim/bundle/Vundle.vim
+endif
+
+call vundle#begin()
+
+" この下に追加したいプラグインを入力する
+Plugin 'VundleVim/Vundle.vim'
+"Plugin 'itchyny/lightline.vim'
+Plugin 'preservim/nerdtree'
+Plugin 'Shougo/unite.vim'     
+Plugin 'joshdick/onedark.vim' " カラーテーマ
+Plugin 'sonph/onehalf'        " カラーテーマ
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'markonm/traces.vim'   " 正規表現での検索をハイライト表示
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+" deoplete.nvim start~~~~~~~~~~~~~~~~~~~~~~~
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'wokalski/autocomplete-flow'
+" deoplete.nvim end~~~~~~~~~~~~~~~~~~~~~~~~~
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'ryanoasis/vim-devicons'
+
+call vundle#end()
+filetype plugin indent on
+" ==============================================================================
+" Vundle.vim END
+" ==============================================================================
+
+" ==============================================================================
+" deoplete.nvim START
+" ==============================================================================
+" pythonパスは環境により異なる
+if isdirectory(expand('~\AppData\Local\Continuum\anaconda3'))
+  let g:python3_host_prog = expand('~\AppData\Local\Continuum\anaconda3\python.exe')
+elseif isdirectory(expand('~\Anaconda3'))
+  let g:python3_host_prog = expand('~\Anaconda3\python.exe')
+else
+  let g:python3_host_prog = expand('/usr/bin/python3')
+endif
+" 自動起動
+let g:deoplete#enable_at_startup = 1
+" ==============================================================================
+" deoplete.nvim END
+" ==============================================================================
+
+" ==============================================================================
+" nerdtree START
+" ==============================================================================
+" 自動起動
+" autocmd vimenter * NERDTree
+" Ctrl+n で表示
+map <C-n> :NERDTreeToggle<CR>
+" <Leader>+n でカレントディレクトリを表示
+map <Leader>n :NERDTree .<CR>
+" 他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる。
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" ==============================================================================
+" nerdtree END
+" ==============================================================================
+
+" ==============================================================================
+" vim-airline START  (フォントはCicaにしておく)
+" ==============================================================================
+let g:airline#extensions#tabline#enabled = 1              " タブ表示
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_powerline_fonts = 1
+set laststatus=2
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 1
+let g:airline_theme = 'papercolor' " テーマは→ https://github.com/vim-airline/vim-airline/wiki/Screenshots
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+
+" ==============================================================================
+" vim-airline END
+" ==============================================================================
+
+" ==============================================================================
+" vim-markdown START
+" ==============================================================================
+autocmd BufRead,BufNewFile *.mkd  set filetype=markdown
+autocmd BufRead,BufNewFile *.md  set filetype=markdown
+" 自動で折りたたまないようにする
+let g:vim_markdown_folding_disabled=1
+let g:previm_enable_realtime = 1
+" ==============================================================================
+" vim-markdown END
+" ==============================================================================
+
+" ==============================================================================
+" neosnippet START
+" ==============================================================================
+let g:neosnippet#enable_completed_snippet = 1
+" ==============================================================================
+" neosnippet END
+" ==============================================================================
+
+" ==============================================================================
+" Unit.vim START
+" ==============================================================================
+" 入力モードで開始する
+" let g:unite_enable_start_insert=1
+" バッファ一覧
+noremap <Leader>b :Unite buffer<CR>
+" ファイル一覧
+noremap <Leader>f :Unite -buffer-name=file file<CR>
+" ==============================================================================
+" Unit.vim END
+" ==============================================================================
+
+" ==============================================================================
+" vim-devicons START
+" ==============================================================================
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+" ==============================================================================
+" vim-devicons END
+" ==============================================================================

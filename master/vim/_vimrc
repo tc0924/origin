@@ -156,6 +156,8 @@ if isdirectory(expand('~\AppData\Local\Continuum\anaconda3'))
   let g:python3_host_prog = expand('~\AppData\Local\Continuum\anaconda3\python.exe')
 elseif isdirectory(expand('~\Anaconda3'))
   let g:python3_host_prog = expand('~\Anaconda3\python.exe')
+else
+  let g:python3_host_prog = expand('/usr/bin/python3')
 endif
 " 自動起動
 let g:deoplete#enable_at_startup = 1
