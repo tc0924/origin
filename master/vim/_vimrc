@@ -102,6 +102,8 @@ set history=5000
 set whichwrap=b,s,h,l,<,>,[,],~
 " CJK文字対策
 set ambiwidth=double
+" 行番号の絶対⇔相対を切替
+noremap <F3> :set relativenumber!<CR>
 
 " ==============================================================================
 " Vundle.vim START
