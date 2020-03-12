@@ -143,6 +143,18 @@ Plugin 'wokalski/autocomplete-flow'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'jnurmine/zenburn'
+Plugin 'cocopon/iceberg.vim'
+Plugin 'mhartington/oceanic-next'
+Plugin 'yggdroot/indentline'
+" markdown-preview.nvim start~~~~~~~~~~~~~~~~
+" markdownプレビュー用(nodeとyarnがインストールされてパスが通ってること！)
+" プラグインインストール後に手動でビルドした
+" cd ~/.vim/bundle/markdown-preview.nvim\app
+" yarn install
+Plugin 'iamcco/markdown-preview.nvim'
+" markdown-preview.nvim end~~~~~~~~~~~~~~~~~~
+Plugin 'junegunn/vim-easy-align'
 
 call vundle#end()
 filetype plugin indent on
@@ -269,4 +281,15 @@ noremap <Leader>f :Unite -buffer-name=file file<CR>
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 " ==============================================================================
 " vim-devicons END
+" ==============================================================================
+
+" ==============================================================================
+" vim-easy-align START
+" ==============================================================================
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+" ==============================================================================
+" vim-easy-align END
 " ==============================================================================

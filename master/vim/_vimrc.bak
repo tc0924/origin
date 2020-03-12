@@ -143,6 +143,15 @@ Plugin 'wokalski/autocomplete-flow'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'jnurmine/zenburn'
+Plugin 'cocopon/iceberg.vim'
+Plugin 'mhartington/oceanic-next'
+Plugin 'yggdroot/indentline'
+" markdownプレビュー用(nodeとyarnがインストールされてパスが通ってること！)
+" プラグインインストール後に手動でビルドした
+" cd ~/.vim/bundle/markdown-preview.nvim\app
+" yarn install
+Plugin 'iamcco/markdown-preview.nvim'
 
 call vundle#end()
 filetype plugin indent on

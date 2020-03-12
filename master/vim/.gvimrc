@@ -15,6 +15,8 @@ set guifontwide=Cica:h12
 set renderoptions=type:directx,renmode:5
 " ツールバーを非表示
 set guioptions-=T
+" メニューバーを非表示
+set guioptions-=m
 " GVimを半透明にする
 " autocmd FocusGained * set transparency=240
 " autocmd FocusLost * set transparency=128
