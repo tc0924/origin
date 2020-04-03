@@ -3,8 +3,8 @@
 
 # 256色
 export TERM="xterm-256color"
-# Path to your oh-my-zsh installation.
 
+# Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
@@ -13,7 +13,6 @@ export ZSH=$HOME/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE="nerdfont-complete"
-
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history date time)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
@@ -130,5 +129,11 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
-# Anacondaのパスを通す
-export PATH="/anaconda3/bin:$PATH"
+# Nodeのパスを通す
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# pyenv
+export PYENV_PATH=$HOME/.pyenv
+export PATH="$PYENV_PATH/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
