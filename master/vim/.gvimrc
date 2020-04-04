@@ -15,8 +15,13 @@ set guifontwide=SFMonoSquare-Regular:h16.5
 set renderoptions=type:directx,renmode:5
 " ツールバーを非表示
 set guioptions-=T
-" メニューバーを非表示
+" メニューバーを非表示(その他もろもろ)
 set guioptions-=m
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=b
 " GVimを半透明にする
 " autocmd FocusGained * set transparency=240
 " autocmd FocusLost * set transparency=128
@@ -24,11 +29,6 @@ set guioptions-=m
 set showmatch
 " Vimの「%」を拡張する
 source $VIMRUNTIME/macros/matchit.vim 
-" コマンドモードの補完
-set wildmenu
-set wildmode=list:longest
-" 保存するコマンド履歴の数
-set history=5000 
 " 不可視文字を表示
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%

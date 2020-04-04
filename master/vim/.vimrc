@@ -94,8 +94,16 @@ set whichwrap=b,s,h,l,<,>,[,],~
 set ambiwidth=double
 " 行番号の絶対⇔相対を切替
 noremap <F3> :set relativenumber!<CR>
-
-let g:python3_host_prog = '/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/bin/python3.7'
+" pythonパス(環境により異なる)
+if has('win32') || has ('win64') "Windows
+  "python3.7が必要 https://github.com/koron/vim-kaoriya/blob/master/kaoriya/doc/README.txt
+  let g:python3_host_prog = expand('C:\Users\lz83462\scoop\apps\python37\3.7.7\python.exe')
+  set pythonthreedll=C:\Users\lz83462\scoop\apps\python37\3.7.7\python37.dll
+elseif has("mac") "mac
+  let g:python3_host_prog = '/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/bin/python3.7'
+elseif has("unix") "Linux
+  let g:python3_host_prog = expand('~/.pyenv/shims/python3')
+endif
 
 " ==============================================================================
 " Vundle.vim START
@@ -144,6 +152,7 @@ Plugin 'iamcco/markdown-preview.nvim'
 " markdown-preview.nvim end~~~~~~~~~~~~~~~~~~
 Plugin 'junegunn/vim-easy-align'
 Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'arcticicestudio/nord-vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -179,7 +188,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " vim-airline START  (フォントはCicaにしておく)
 " ==============================================================================
 let g:airline#extensions#tabline#enabled = 1              " タブ表示
-let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -231,6 +240,10 @@ autocmd BufRead,BufNewFile *.md  set filetype=markdown
 " 自動で折りたたまないようにする
 let g:vim_markdown_folding_disabled=1
 let g:previm_enable_realtime = 1
+" Disabling conceal for code fences
+let g:vim_markdown_conceal_code_blocks = 0
+" To disable conceal regardless of conceallevel setting
+let g:vim_markdown_conceal = 0
 " ==============================================================================
 " vim-markdown END
 " ==============================================================================
@@ -274,6 +287,9 @@ nmap ga <Plug>(EasyAlign)
 " ==============================================================================
 " vim-easy-align END
 " ==============================================================================
+" ==============================================================================
+" テーマ関連設定 START
+" ==============================================================================
 " 256色対応
 set t_Co=256
 " ダーク系のカラースキームを使う
@@ -284,3 +300,6 @@ set renderoptions=type:directx,renmode:5
 colorscheme dracula
 " シンタックス
 syntax enable
+" ==============================================================================
+" テーマ関連設定 END
+" ==============================================================================

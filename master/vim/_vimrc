@@ -95,10 +95,12 @@ set ambiwidth=double
 " 行番号の絶対⇔相対を切替
 noremap <F3> :set relativenumber!<CR>
 " pythonパス(環境により異なる)
-if has('win32') || has ('win64')
+if has('win32') || has ('win64') "Windows
   "python3.7が必要 https://github.com/koron/vim-kaoriya/blob/master/kaoriya/doc/README.txt
   let g:python3_host_prog = expand('C:\Users\lz83462\scoop\apps\python37\3.7.7\python.exe')
   set pythonthreedll=C:\Users\lz83462\scoop\apps\python37\3.7.7\python37.dll
+elseif has("mac") "mac
+  let g:python3_host_prog = '/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/bin/python3.7'
 endif
 
 " ==============================================================================
@@ -119,7 +121,7 @@ call vundle#begin()
 " この下に追加したいプラグインを入力する
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree'
-Plugin 'Shougo/unite.vim'     
+Plugin 'Shougo/unite.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'markonm/traces.vim'   " 正規表現での検索をハイライト表示
 Plugin 'vim-airline/vim-airline'
