@@ -7,7 +7,7 @@ set t_Co=256
 " ダーク系のカラースキームを使う
 set background=dark
 " カラースキーム
-colorscheme onehalflight
+colorscheme dracula
 " フォント設定
 set guifont=Cica:h12
 set guifontwide=Cica:h12
