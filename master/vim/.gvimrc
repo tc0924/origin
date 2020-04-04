@@ -7,10 +7,10 @@ set t_Co=256
 " ダーク系のカラースキームを使う
 set background=dark
 " カラースキーム
-colorscheme onehalflight
+colorscheme dracula
 " フォント設定
-set guifont=Cica:h12
-set guifontwide=Cica:h12
+set guifont=SFMonoSquare-Regular:h16.5
+set guifontwide=SFMonoSquare-Regular:h16.5
 " DirectX
 set renderoptions=type:directx,renmode:5
 " ツールバーを非表示

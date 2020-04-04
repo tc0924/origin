@@ -67,16 +67,6 @@ inoremap <silent> jj <ESC>
 inoremap <silent> っj <ESC>
 " 改行挿入時に挿入モードに移行しない([Space]+[Enter])
 noremap <Space><CR> o<ESC>
-" 256色対応
-set t_Co=256
-" ダーク系のカラースキームを使う
-set background=dark
-" DirectX
-set renderoptions=type:directx,renmode:5
-" テーマ
-colorscheme atom-dark-256
-" シンタックス
-syntax enable
 " バッファの移動 
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
@@ -105,6 +95,8 @@ set ambiwidth=double
 " 行番号の絶対⇔相対を切替
 noremap <F3> :set relativenumber!<CR>
 
+let g:python3_host_prog = '/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/bin/python3.7'
+
 " ==============================================================================
 " Vundle.vim START
 " ==============================================================================
@@ -124,9 +116,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'itchyny/lightline.vim'
 Plugin 'preservim/nerdtree'
-Plugin 'Shougo/unite.vim'     
-Plugin 'joshdick/onedark.vim' " カラーテーマ
-Plugin 'sonph/onehalf'        " カラーテーマ
+Plugin 'Shougo/unite.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'markonm/traces.vim'   " 正規表現での検索をハイライト表示
 Plugin 'vim-airline/vim-airline'
@@ -143,9 +133,7 @@ Plugin 'wokalski/autocomplete-flow'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'ryanoasis/vim-devicons'
-Plugin 'jnurmine/zenburn'
 Plugin 'cocopon/iceberg.vim'
-Plugin 'mhartington/oceanic-next'
 Plugin 'yggdroot/indentline'
 " markdown-preview.nvim start~~~~~~~~~~~~~~~~
 " markdownプレビュー用(nodeとyarnがインストールされてパスが通ってること！)
@@ -155,6 +143,7 @@ Plugin 'yggdroot/indentline'
 Plugin 'iamcco/markdown-preview.nvim'
 " markdown-preview.nvim end~~~~~~~~~~~~~~~~~~
 Plugin 'junegunn/vim-easy-align'
+Plugin 'dracula/vim', { 'name': 'dracula' }
 
 call vundle#end()
 filetype plugin indent on
@@ -165,14 +154,6 @@ filetype plugin indent on
 " ==============================================================================
 " deoplete.nvim START
 " ==============================================================================
-" pythonパスは環境により異なる
-if isdirectory(expand('~\AppData\Local\Continuum\anaconda3'))
-  let g:python3_host_prog = expand('~\AppData\Local\Continuum\anaconda3\python.exe')
-elseif isdirectory(expand('~\Anaconda3'))
-  let g:python3_host_prog = expand('~\Anaconda3\python.exe')
-else
-  let g:python3_host_prog = expand('/usr/bin/python3')
-endif
 " 自動起動
 let g:deoplete#enable_at_startup = 1
 " ==============================================================================
@@ -203,7 +184,7 @@ let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
-let g:airline_theme = 'papercolor' " テーマは→ https://github.com/vim-airline/vim-airline/wiki/Screenshots
+let g:airline_theme = 'dracula' " テーマは→ https://github.com/vim-airline/vim-airline/wiki/Screenshots
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -293,3 +274,13 @@ nmap ga <Plug>(EasyAlign)
 " ==============================================================================
 " vim-easy-align END
 " ==============================================================================
+" 256色対応
+set t_Co=256
+" ダーク系のカラースキームを使う
+set background=dark
+" DirectX
+set renderoptions=type:directx,renmode:5
+" テーマ
+colorscheme dracula
+" シンタックス
+syntax enable
